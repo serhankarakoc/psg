@@ -71,16 +71,4 @@ func registerAuthRoutes(app *fiber.App) {
 		middlewares.GuestMiddleware,
 		authHandler.OAuthCallback,
 	)
-
-	// ==================== BACKWARD COMPATIBILITY ====================
-	// Eski Google routes (isteğe bağlı - kaldırabilirsin)
-	authGroup.Get("/google/login",
-		middlewares.GuestMiddleware,
-		authHandler.GoogleLogin,
-	)
-
-	authGroup.Get("/google/callback",
-		middlewares.GuestMiddleware,
-		authHandler.GoogleCallback,
-	)
 }
