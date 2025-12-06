@@ -22,7 +22,6 @@ import (
 	"zatrano/routes"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/gofiber/fiber/v2/middleware/etag"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -117,17 +116,14 @@ func main() {
 	// Orta katmanlar
 	app.Use(recover.New())
 	app.Use(logger.New())
-	app.Use(compress.New())
 	app.Use(etag.New())
 
 	// Statik dosyalar
 	app.Static("/", "./public", fiber.Static{
-		Compress:  true,
 		ByteRange: true,
 		Browse:    false,
 	})
 	app.Static("/uploads", fileconfig.Config.BasePath, fiber.Static{
-		Compress:  true,
 		ByteRange: true,
 		Browse:    false,
 	})
